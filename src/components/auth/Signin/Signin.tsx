@@ -1,9 +1,10 @@
 //styles
-import { Wrapper, SignBloc } from './Signin.styles';
+import { Wrapper, SignBloc, Input } from './Signin.styles';
 import { COLORS } from '../../../assets/constants';
 //compo
 import Button from '../../layouts/Button';
 import { useEffect, useState } from 'react';
+import { TextField } from '@mui/material';
 
 const Signin = () => {
     const [click, setClick] = useState(false)
@@ -20,6 +21,9 @@ const Signin = () => {
         <Wrapper>
             <SignBloc>
                 <h1>Se connecter</h1>
+
+                <Input placeholder="Mail"></Input>
+                <Input placeholder="Mot de pass" type={'password'}></Input>
 
                 <Button 
                     onclick={handleClick} 

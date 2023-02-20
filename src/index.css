@@ -18,3 +18,10 @@ button {
   font-family: inherit;
   font-size: inherit;
 }
+
+input {
+  font-size: inherit;
+  border: none;
+  font-family: inherit;
+  outline: none;
+}
