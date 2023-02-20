@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 `
 
 export const SignBloc = styled.div`
-    color: ${COLORS.yellow};
+   color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,10 +26,36 @@ export const SignBloc = styled.div`
     button {
         margin-top: 20px;
     }
+
+    h1 {
+        color: ${COLORS.yellow};
+    }
+
+    p span {
+        color: ${COLORS.yellow};
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    & .err {
+        margin-top: 0px;
+        font-weight: bold;
+        color: white;
+    }
 `
-export const Input = styled.input`
+
+interface InputProps {
+    err?: boolean
+}
+
+export const Input = styled.input<InputProps>`
     padding: 13px 7px;
     border-radius: 7px;
     margin: 10px 0;
     width: 200px;
+    background: ${props => props.err ? COLORS.err : "white"};
+    color: ${props => props.err ? "white" : "black"};
+    ::placeholder {
+       color : ${props => props.err ? "white" : "black"};
+    } 
 `

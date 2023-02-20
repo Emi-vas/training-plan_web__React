@@ -25,3 +25,7 @@ input {
   font-family: inherit;
   outline: none;
 }
+
+.color {
+  color: #b63939;
+}
