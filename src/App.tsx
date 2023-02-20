@@ -1,10 +1,16 @@
-import React from 'react';
+//react
+import { Routes, Route } from "react-router-dom"
+//compo
+import Home from "./pages/Home";
+import Signin from "./components/auth/Signin";
 
 const App = () => {
+  const user = false
+
   return (
-    <div>
-      <h1>Mon App</h1>
-    </div>
+    <Routes>
+        <Route path="/" element={ user ? <Home /> : <Signin /> }/>
+    </Routes>
   );
 };
 
