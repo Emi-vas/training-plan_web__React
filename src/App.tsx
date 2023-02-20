@@ -4,6 +4,7 @@ import { useState } from "react";
 //compo
 import Home from "./pages/Home";
 import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
 
 const App = () => {
   const user = false
@@ -19,11 +20,11 @@ export default App;
 
 
 const Signinup = () => {
-  const [display, setDisplay] = useState('signin')
+  const [display, setDisplay] = useState('signIn')
 
-    if(display === 'signin') {
+    if(display === 'signIn') {
       return <Signin setDisplay={setDisplay} />
     } else {
-      return <div>Signup</div>
+      return <Signup setDisplay={setDisplay} />
     }
 }

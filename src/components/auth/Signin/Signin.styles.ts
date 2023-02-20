@@ -56,6 +56,6 @@ export const Input = styled.input<InputProps>`
     background: ${props => props.err ? COLORS.err : "white"};
     color: ${props => props.err ? "white" : "black"};
     ::placeholder {
-       color : ${props => props.err ? "white" : "black"};
+       color : ${props => props.err ? "white" : "gray"};
     } 
 `

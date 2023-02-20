@@ -5,6 +5,7 @@ import { act } from "react-dom/test-utils";
 //compo
 import Signin from "../Signin";
 
+
 beforeEach(() => {
     render(<Signin setDisplay={()=>{}}/>)
 })
@@ -40,7 +41,9 @@ describe('Signin Testing', () => {
     test('Err with empty pass', () => {
         //user type mail adress
         const inputMail = screen.getByPlaceholderText(/mail/i)
-        userEvent.type(inputMail, 'uneadressemail@gmail.com')
+        act(() => {
+            userEvent.type(inputMail, 'uneadressemail@gmail.com')
+        })
         //user click on btn (se connecter)
         const btn = screen.getByRole('button', { name: /se connecter/i})
         const err = screen.queryByText(/Merci de renseigner un mot de passe/i)
