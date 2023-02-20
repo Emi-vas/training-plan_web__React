@@ -5,14 +5,22 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
+import Dashboard from "./pages/Dashboard";
+import CreateTraining from "./pages/CreateTraining";
+//firebase
+import { useAuth } from "./auth/UserContext";
 
 const App = () => {
-  const user = false
+  const { user } = useAuth()
 
   return (
-    <Routes>
-        <Route path="/" element={ user ? <Home /> : <Signinup /> }/>
-    </Routes>
+    <>
+      <Routes>
+          <Route path="/" element={ user ? <Home /> : <Signinup /> }/>
+          <Route path="/tableau-de-bord" element={ user ? <Dashboard /> : <Signinup /> }/>
+          <Route path="/creer-entrainement" element={ user ? <CreateTraining /> : <Signinup /> }/>
+      </Routes>
+    </>
   );
 };
 

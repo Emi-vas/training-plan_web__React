@@ -26,6 +26,11 @@ input {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .color {
   color: #b63939;
 }
