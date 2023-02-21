@@ -14,7 +14,7 @@ const Footer = ({ type }: Props) => {
             <h2>Training Plan</h2>
 
             <LinksBloc>
-                <a href="https://app.underdom.fr/" target={"_blank"} className="link">retour portfolio</a>
+                <a href="https://app.underdom.fr/" className="link">retour portfolio</a>
                 <span className='link link-last' onClick={logOut}>se déconnecter</span>
             </LinksBloc>
         </Wrapper>

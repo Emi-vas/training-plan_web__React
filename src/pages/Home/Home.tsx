@@ -2,16 +2,17 @@
 import React from 'react';
 import Footer from '../../components/layouts/Footer';
 //styles
-import { BtnLink, Wrapper } from './Home.style';
+import { BtnLink } from '../../styles/wrapper';
+import { WrapperMain } from '../../styles/wrapper';
 //compo
 import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <Wrapper>
+        <WrapperMain>
             <BtnLink>
                 <Link to={"/creer-entrainement"}>
-                    <p>Creer un entrainement</p>
+                    <p>Créer un entrainement</p>
                 </Link>
             </BtnLink>
             <BtnLink>
@@ -21,7 +22,7 @@ const Home = () => {
             </BtnLink>
 
             <Footer type={"dark"}/>
-        </Wrapper>
+        </WrapperMain>
     );
 };
 
