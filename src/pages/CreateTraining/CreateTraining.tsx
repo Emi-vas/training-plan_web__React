@@ -6,14 +6,19 @@ import { ChooseTypeWrapper } from './CreateTraining.styles';
 import Footer from '../../components/layouts/Footer';
 import QuestionMultiple from '../../components/createTraining/QuestionMultiple';
 import QuestionSimple from '../../components/createTraining/QuestionSimple';
-import Running from './sports/Running';
+import RunningCompo from './sports/Running';
+//types
+import { TrainingInfo } from '../../assets/types';
 
 
 
 const CreateTraining = () => {
-    const [trainingInfo, setTrainingInfo] = useState({
+    const [trainingInfo, setTrainingInfo] = useState<TrainingInfo>({
         date: [""],
         sport: "",
+        running: null,
+        crossfit: null,
+        muscu: null
     }) 
 
     const handleSetDate = (values: string[]) => {
@@ -50,7 +55,10 @@ const CreateTraining = () => {
                 {/* TRAINING SPORT */}
             {
                 trainingInfo.sport == "Course à pied" &&
-                <Running />
+                <RunningCompo 
+                    trainingInfo={trainingInfo}
+                    setTrainingInfo={setTrainingInfo}
+                />
             }
 
             <Footer type={"dark"}/>

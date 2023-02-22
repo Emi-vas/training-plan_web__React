@@ -1,47 +1,73 @@
-import React from 'react';
-import { BtnLink } from '../../../styles/wrapper';
-import { ChooseTypeWrapper } from '../CreateTraining.styles';
+import React, { useEffect, useState } from 'react';
+//types
+import { Running, TrainingInfo } from '../../../assets/types';
+//compo
+import Finish from '../../../components/createTraining/Finish/Finish';
+import QuestionInput from '../../../components/createTraining/QuestionInput';
+import QuestionSimple from '../../../components/createTraining/QuestionSimple';
 
-const Running = () => {
+interface Props {
+    trainingInfo: TrainingInfo
+    setTrainingInfo: (v: TrainingInfo) => void
+}
 
-    const onClick = (value: string) => {
-        console.log(value)
+const RunningCompo = ({ trainingInfo, setTrainingInfo }: Props) => {
+    const [running, setRunning] = useState<Running>({ type: "", distance: "", time: '' })
+    const [errMessage, setErrMessage] = useState('')
+    const [finish, setFinish] = useState(false)
+
+    const setType = (value: string) => {
+        setRunning({ ...running, type: value })
+    }
+
+    const setDistance = (value: string) => {
+        console.log(parseInt(value) )
+        if(parseInt(value) > 0) {
+            setRunning({ ...running, distance: value })
+            setFinish(true)
+        } else {
+            setErrMessage('La distance renseigné est incorrect')
+            setTimeout(() => {
+                setErrMessage('')
+            }, 3000)
+        }
+    }
+
+    useEffect(() => {
+        if(finish) {
+            setTrainingInfo({
+                ...trainingInfo, 
+                running: running
+            })
+        }
+    },[running])
+
+    if(finish) {
+        return <Finish />
     }
 
     return (
-        <QuestionSimple 
-            question='Quel type de séance ?'
-            choices={['Endurance', 'Haute intensité', 'Fractionné']}
-            onClick={onClick}
-        />
+        <>
+            {
+                running.type == "" &&
+                <QuestionSimple 
+                    question='Quel type de séance ?'
+                    choices={['Endurance', 'Haute intensité', 'Fractionné']}
+                    onClick={setType}
+                />
+            }
+            
+            {
+                (running.type == "Endurance" || running.type == "Haute intensité") &&
+                <QuestionInput 
+                    question='Quelle distance ?'
+                    placeholder="Km"
+                    onSubmit={setDistance}
+                    errMessage={errMessage}
+                />
+            }
+        </>
+        
     );
 };
-
-export default Running;
-
-
-interface PropsQuestion {
-    question: string
-    choices: string[]
-    onClick: (v: string) => void
-}
-
-const QuestionSimple = ({ question, choices, onClick }: PropsQuestion) => {
-    return (
-        <>
-            <h2>{ question }</h2>
-            <ChooseTypeWrapper>
-                {
-                    choices.map((choice) => (
-                        <BtnLink 
-                            key={choice}
-                            onClick={() => onClick(choice)}
-                        >
-                            <p>{choice}</p>
-                        </BtnLink>
-                    ))
-                }
-            </ChooseTypeWrapper>
-        </>
-    )
-}
+export default RunningCompo;
