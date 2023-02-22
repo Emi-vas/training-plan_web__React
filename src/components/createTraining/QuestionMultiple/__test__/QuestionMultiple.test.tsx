@@ -6,12 +6,7 @@ import QuestionMultiple from "../QuestionMultiple";
 beforeEach(() => {
     render(
         <QuestionMultiple 
-            setTrainingInfo={()=>{}}
-            trainingInfo={{
-                date: [""],
-                sport: ""
-            }}
-            param="date"
+            onSubmit={()=>{}}
             question="a question for user"
             choices={['choice1', 'choice2', 'choice3']}
         />

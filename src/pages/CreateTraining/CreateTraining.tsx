@@ -16,6 +16,14 @@ const CreateTraining = () => {
         sport: "",
     }) 
 
+    const handleSetDate = (values: string[]) => {
+        setTrainingInfo({ ...trainingInfo, date: values })
+    }
+
+    const handleSetSport = (value: string) => {
+        setTrainingInfo({ ...trainingInfo, sport: value })
+    }
+
     useEffect(() => {
         console.log(trainingInfo)
     },[trainingInfo])
@@ -25,9 +33,7 @@ const CreateTraining = () => {
             {
                 trainingInfo.date[0] == ""  &&
                 <QuestionMultiple 
-                    setTrainingInfo={setTrainingInfo} 
-                    trainingInfo={trainingInfo} 
-                    param='date'
+                    onSubmit={handleSetDate}
                     question='Quel jour(s) pour cet entrainement ?'
                     choices={['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']}
                 />
@@ -35,9 +41,7 @@ const CreateTraining = () => {
             { 
                 trainingInfo.sport == "" && trainingInfo.date[0] != "" &&
                 <QuestionSimple 
-                    setTrainingInfo={setTrainingInfo} 
-                    trainingInfo={trainingInfo} 
-                    param='sport'
+                    onClick={handleSetSport}
                     question='Quel sport ?'
                     choices={['Course à pied', 'Musculation', 'Crossfit']}
                 /> 
@@ -45,7 +49,7 @@ const CreateTraining = () => {
 
                 {/* TRAINING SPORT */}
             {
-                trainingInfo.sport == "course à pied" &&
+                trainingInfo.sport == "Course à pied" &&
                 <Running />
             }
 

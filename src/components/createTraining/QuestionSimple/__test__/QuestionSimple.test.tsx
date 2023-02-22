@@ -4,12 +4,7 @@ import QuestionSimple from "../QuestionSimple";
 beforeEach(() => {
     render(
         <QuestionSimple 
-            setTrainingInfo={() => {}}
-            trainingInfo={{
-                date: [''],
-                sport: ''
-            }}
-            param={'sport'}
+            onClick={()=>{}}
             question={"a question for user"}
             choices={['choice', 'choice', 'choice']}
         />

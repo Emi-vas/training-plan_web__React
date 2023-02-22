@@ -1,7 +1,5 @@
 //react
 import { useEffect, useState } from "react"
-//types
-import { ParamArray, TrainingInfo } from "../../../assets/types"
 //compo
 import { ChooseTypeWrapper } from "../../../pages/CreateTraining/CreateTraining.styles"
 import Button from "../../layouts/Button"
@@ -12,17 +10,13 @@ import { COLORS } from "../../../assets/constants"
 
 
 interface PropsQuestionMultiple {
-    setTrainingInfo: (v: TrainingInfo) => void
-    trainingInfo: TrainingInfo
-    param: ParamArray
+    onSubmit: (v: string[]) => void
     question: string
     choices: string[]
 }
 
-const QuestionMultiple = ({ setTrainingInfo, trainingInfo, param, question, choices }: PropsQuestionMultiple) => {
+const QuestionMultiple = ({ question, choices, onSubmit }: PropsQuestionMultiple) => {
     const [displayBtn, setDisplayBtn] = useState(false)
-    let trainingInfoTemp: TrainingInfo = trainingInfo
-    //let choicesSelected: string[] | [] = []
     const [choicesSelected, setChoicesSelected] = useState<string[]>([])
 
     const handleClick = (choice: string) => {
@@ -37,12 +31,6 @@ const QuestionMultiple = ({ setTrainingInfo, trainingInfo, param, question, choi
         setDisplayBtn(true)
        
         //
-    }
-    
-    const submit = () => {
-        trainingInfoTemp[param] = choicesSelected
-        console.log(choicesSelected)
-        setTrainingInfo({...trainingInfoTemp})
     }
 
     useEffect(() => {
@@ -72,7 +60,7 @@ const QuestionMultiple = ({ setTrainingInfo, trainingInfo, param, question, choi
 
             { displayBtn && 
                 <Button 
-                    onclick={submit} 
+                    onclick={()=> onSubmit(choicesSelected)} 
                     txt={"Valider"}
                     colors={{main: COLORS.orange, hover: COLORS.orangeLight, form: COLORS.orangeDark}}
                 /> 
