@@ -6,6 +6,7 @@ import { ChooseTypeWrapper } from './CreateTraining.styles';
 import Footer from '../../components/layouts/Footer';
 import QuestionMultiple from '../../components/createTraining/QuestionMultiple';
 import QuestionSimple from '../../components/createTraining/QuestionSimple';
+import Running from './sports/Running';
 
 
 
@@ -40,6 +41,12 @@ const CreateTraining = () => {
                     question='Quel sport ?'
                     choices={['Course à pied', 'Musculation', 'Crossfit']}
                 /> 
+            }
+
+                {/* TRAINING SPORT */}
+            {
+                trainingInfo.sport == "course à pied" &&
+                <Running />
             }
 
             <Footer type={"dark"}/>
