@@ -1,5 +1,2 @@
-import styled from "styled-components";
-
-export const Wrapper = styled.div`
-
-`
+import Finish from "./Finish";
+export default Finish

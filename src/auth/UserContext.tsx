@@ -2,7 +2,8 @@
 import { useContext, createContext, useEffect, useState } from "react";
 //firebase
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword , signOut } from "firebase/auth";
-import { auth } from './firebase'
+import { auth, db } from './firebase'
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 const initialValue = {
     user : {},
@@ -31,6 +32,12 @@ const UserContextCompo = ({ children }: Props) => {
 
     const signUp = async (mail: string, pass: string) => {
         const res = await createUserWithEmailAndPassword(auth, mail, pass)
+        console.log(res.user.uid)
+        //create user in firestore to put data after
+        const docRef = doc(db, 'users', res.user.uid)
+        await setDoc(docRef, {})
+       /*  const collectionRef = collection(db, `users/${res.user.uid}/trainings`)
+        await addDoc(collectionRef, {}) */
         return res
     }
 
@@ -42,7 +49,7 @@ const UserContextCompo = ({ children }: Props) => {
         //change l'état à chaque changement. 
         //Ca gère automatique le storage ce qui fait que dès qu'un mec est co tu as acces
         const unsubscribe = auth.onAuthStateChanged(
-            userActual => setUser(userActual)
+            userActual => setUser(userActual?.uid)
         )
         return unsubscribe //desactive quand le compo est pas monté
     }, [])

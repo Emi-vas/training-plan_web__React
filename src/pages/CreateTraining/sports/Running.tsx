@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 //types
 import { Running, TrainingInfo } from '../../../assets/types';
 //compo
-import Finish from '../../../components/createTraining/Finish/Finish';
+import Finish from '../../../components/createTraining/Finish';
 import QuestionInput from '../../../components/createTraining/QuestionInput';
 import QuestionSimple from '../../../components/createTraining/QuestionSimple';
 
@@ -33,17 +33,17 @@ const RunningCompo = ({ trainingInfo, setTrainingInfo }: Props) => {
         }
     }
 
-    useEffect(() => {
-        if(finish) {
-            setTrainingInfo({
-                ...trainingInfo, 
-                running: running
-            })
-        }
-    },[running])
-
     if(finish) {
-        return <Finish />
+        return (
+            <Finish trainingInfo={{
+                ...trainingInfo,
+                running: {
+                    distance: running.distance,
+                    type: running.type,
+                    time: ''
+                }
+            }} />
+        )
     }
 
     return (
